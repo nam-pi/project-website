@@ -7,26 +7,15 @@ import { App } from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 const api = process.env.REACT_APP_API;
-const auth = process.env.REACT_APP_AUTH;
-const client = process.env.REACT_APP_CLIENT;
-const realm = process.env.REACT_APP_REALM;
 
-if (!api || !auth || !client || !realm) {
+if (!api) {
   throw new Error("Invalid environment");
 }
 
 ReactDOM.render(
   <React.StrictMode>
     <TranslationProvider>
-      <NampiProvider
-        api={api}
-        auth={auth}
-        client={client}
-        realm={realm}
-        searchTimeout={200}
-        silentSsoUri={window.location.origin + "/silent-check-sso.html"}
-        sso={true}
-      >
+      <NampiProvider api={api} searchTimeout={200}>
         <App />
       </NampiProvider>
     </TranslationProvider>
